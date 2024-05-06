@@ -98,7 +98,6 @@ class User:
     def transactions(self) -> list:
         return self.__transactions
 
-
 if __name__ == "__main__":
     bank = Bank(10000, True)
     admin = Admin(bank)
@@ -115,107 +114,109 @@ if __name__ == "__main__":
 
         choice = int(input("Enter your option: "))
         if choice == 1:
-            print("Welcome!!")
-            print("1. Check balance")
-            print("2. Check transaction history")
-            print("3. Take loan")
-            print("4. Transfer amount")
-            print("5. Deposit")
-            print("6. Withdraw")
-            print("7. Exit")
-            choice1 = int(input("Enter your option: "))
-            if choice1 == 1:
-                acc_num = input("Enter user account number: ")
-                user = users.get(acc_num)
-                if user:
-                    print(user.balance)
-                else:
-                    print("Account not found")
-            elif choice1 == 2:
-                acc_num = input("Enter user account number: ")
-                user = users.get(acc_num)
-                if user:
-                    print(user.transactions)
-                else:
-                    print("Account not found")
-            elif choice1 == 3:
-                acc_num = input("Enter user account number: ")
-                user = users.get(acc_num)
-                if user:
-                    amount = int(input("Enter amount: "))
-                    user.request_for_loan(amount)
-                else:
-                    print("Account not found")
-            elif choice1 == 4:
-                acc_num = input("Enter user account number: ")
-                user = users.get(acc_num)
-                if user:
-                    rec_num = input("Enter recipient account number: ")
-                    rec_user = users.get(rec_num)
-                    if rec_user:
-                        amount = int(input("Enter amount: "))
-                        user.balance_transfer(amount, rec_user)
+            while True:
+                print("Welcome User!!")
+                print("1. Check balance")
+                print("2. Check transaction history")
+                print("3. Take loan")
+                print("4. Transfer amount")
+                print("5. Deposit")
+                print("6. Withdraw")
+                print("7. Exit")
+                choice1 = int(input("Enter your option: "))
+                if choice1 == 1:
+                    acc_num = input("Enter user account number: ")
+                    user = users.get(acc_num)
+                    if user:
+                        print(user.balance)
                     else:
-                        print("Recipient account not found")
+                        print("Account not found")
+                elif choice1 == 2:
+                    acc_num = input("Enter user account number: ")
+                    user = users.get(acc_num)
+                    if user:
+                        print(user.transactions)
+                    else:
+                        print("Account not found")
+                elif choice1 == 3:
+                    acc_num = input("Enter user account number: ")
+                    user = users.get(acc_num)
+                    if user:
+                        amount = int(input("Enter amount: "))
+                        user.request_for_loan(amount)
+                    else:
+                        print("Account not found")
+                elif choice1 == 4:
+                    acc_num = input("Enter user account number: ")
+                    user = users.get(acc_num)
+                    if user:
+                        rec_num = input("Enter recipient account number: ")
+                        rec_user = users.get(rec_num)
+                        if rec_user:
+                            amount = int(input("Enter amount: "))
+                            user.balance_transfer(amount, rec_user)
+                        else:
+                            print("Recipient account not found")
+                    else:
+                        print("Account not found")
+                elif choice1 == 5:
+                    acc_num = input("Enter user account number: ")
+                    user = users.get(acc_num)
+                    if user:
+                        amount = int(input("Enter amount: "))
+                        user.deposit(amount)
+                    else:
+                        print("Account not found")
+                elif choice1 == 6:
+                    acc_num = input("Enter user account number: ")
+                    user = users.get(acc_num)
+                    if user:
+                        amount = int(input("Enter amount: "))
+                        user.withdraw(amount)
+                    else:
+                        print("Account not found")
+                elif choice1 == 7:
+                    break
                 else:
-                    print("Account not found")
-            elif choice1 == 5:
-                acc_num = input("Enter user account number: ")
-                user = users.get(acc_num)
-                if user:
-                    amount = int(input("Enter amount: "))
-                    user.deposit(amount)
-                else:
-                    print("Account not found")
-            elif choice1 == 6:
-                acc_num = input("Enter user account number: ")
-                user = users.get(acc_num)
-                if user:
-                    amount = int(input("Enter amount: "))
-                    user.withdraw(amount)
-                else:
-                    print("Account not found")
-            elif choice1 == 7:
-                break
-            else:
-                print("Invalid option")
+                    print("Invalid option")
         elif choice == 2:
-            print("Welcome!!")
-            print("1. Create account for user")
-            print("2. View all user accounts")
-            print("3. Check total available balance")
-            print("4. Check total loan amount")
-            print("5. Delete user's account")
-            print("6. Exit")
-            choice1 = int(input("Enter your option: "))
-            if choice1 == 1:
-                name = input("Enter a name: ")
-                email = input("Enter a email: ")
-                address = input("Enter a address: ")
-                account_type = input("Enter a account type: ")
-                user, account_number = admin.create_account(name, email, address, account_type)
-                users[account_number] = user
-            elif choice1 == 2:
-                for account_number, user in users.items():
-                    print(f"Account {account_number}")
-            elif choice1 == 3:
-                total_balance = sum(user.balance for user in users.values())
-                print(f"Total Balance in the Bank: {total_balance}TK")
-            elif choice1 == 4:
-                total_loan_amount = sum(user.loan for user in users.values())
-                print(f"Total Loan Amount in the Bank: {total_loan_amount}TK")
-            elif choice1 == 5:
-                acc_num = input("Enter user account number: ")
-                user = users.get(acc_num)
-                if user:
-                    admin.delete_account(acc_num)
-                    del users[acc_num]
-                    print(f"Account {acc_num} has been deleted.")
+            while True:
+                print("Welcome Admin!!")
+                print("1. Create account for user")
+                print("2. View all user accounts")
+                print("3. Check total available balance")
+                print("4. Check total loan amount")
+                print("5. Delete user's account")
+                print("6. Exit")
+                choice1 = int(input("Enter your option: "))
+                if choice1 == 1:
+                    name = input("Enter a name: ")
+                    email = input("Enter a email: ")
+                    address = input("Enter a address: ")
+                    account_type = input("Enter a account type: ")
+                    user, account_number = admin.create_account(name, email, address, account_type)
+                    users[account_number] = user
+                elif choice1 == 2:
+                    for account_number, user in users.items():
+                        print(f"Account {account_number}")
+                elif choice1 == 3:
+                    total_balance = sum(user.balance for user in users.values())
+                    print(f"Total Balance in the Bank: {total_balance}TK")
+                elif choice1 == 4:
+                    total_loan_amount = sum(user.loan for user in users.values())
+                    print(f"Total Loan Amount in the Bank: {total_loan_amount}TK")
+                elif choice1 == 5:
+                    acc_num = input("Enter user account number: ")
+                    user = users.get(acc_num)
+                    if user:
+                        admin.delete_account(acc_num)
+                        del users[acc_num]
+                        print(f"Account {acc_num} has been deleted.")
+                    else:
+                        print("Account not found")
+                elif choice1 == 6:
+                    break
                 else:
-                    print("Account not found")
-            elif choice1 == 6:
-                break
-            else:
-                print("Invalid option")
+                    print("Invalid option")
         elif choice == 3:
             break
